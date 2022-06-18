@@ -5,7 +5,8 @@ const router = express.Router();
 router.get("", async (req, res) => {
   try {
     const users = await User.find().lean().exec();
-    return res.status(200).send(users);
+    const details = users.map((user) => ({ name: user.name, id: user._id }));
+    return res.status(200).send(details);
   } catch (err) {
     return res.status(500).send({ error: err.message });
   }
@@ -20,4 +21,4 @@ router.get("", async (req, res) => {
 //   }
 // });
 
-module.exports = router
+module.exports = router;

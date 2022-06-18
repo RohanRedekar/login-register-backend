@@ -7,6 +7,7 @@ app.listen(port, async () => {
   try {
     await connect();
     console.log(`Listening on Port ${port}`);
+    res.send(`Listening on Port ${port}`);
   } catch (err) {
     console.log(err);
   }

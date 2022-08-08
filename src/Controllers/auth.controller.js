@@ -13,8 +13,7 @@ const register = async (req, res) => {
     }
     user = await User.create(req.body);
 
-    const token = generateToken(user);
-    return res.status(200).send({ user, token });
+    return res.status(200).send({ user });
   } catch (err) {
     return res.status(400).send({ message: err.message });
   }
@@ -26,14 +25,13 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(400).send("wrong Email");
     }
-    console.log(req.body.password);
     const match = user.checkPassword(req.body.password);
     if (!match) {
       return res.status(400).send("wrong Password");
     }
 
     const token = generateToken(user);
-    return res.status(200).send({ user, token });
+    return res.status(200).send({ user, token, success: true });
   } catch (err) {
     return res.status(400).send({ message: err.message });
   }

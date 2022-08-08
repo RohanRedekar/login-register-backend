@@ -1,7 +1,7 @@
 const app = require("./index");
 const connect = require("./Configs/db");
 require("dotenv").config();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 3002;
 
 app.listen(port, async () => {
   try {

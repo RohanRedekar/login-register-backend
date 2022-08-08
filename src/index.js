@@ -5,7 +5,8 @@ const cors = require("cors");
 app.use(cors());
 
 const userController = require("./Controllers/user.controller");
-const { register, login } = require("./Controllers/auth.controller")
+const { register, login } = require("./Controllers/auth.controller");
+const authenticate = require("./Middlewares/authenticate");
 
 app.get("", (req, res) => {
   try {
@@ -18,5 +19,6 @@ app.get("", (req, res) => {
 app.use("/users", userController);
 app.use("/register", register);
 app.use("/login", login);
+app.use("/authenticate", authenticate)
 
 module.exports = app;
